@@ -40,3 +40,10 @@ malwaredomains.lehigh.edu
 raw.github.com
 reason.com
 play.google.com
+phys.org
+adblock.mahakala.is
+stackoverflow.com
+arstechnica.co.uk
+chessex.com
+vimeo.com
+arstechnica.com

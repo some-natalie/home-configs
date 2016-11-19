@@ -20,3 +20,10 @@ bloglovin.com
 www.paypal.com
 *.gvt3.com
 staticxx.facebook.com
+usersegment.wpdigital.net
+subservices.washingtonpost.com
+targeting.washpost.nile.works
+subscribe.washingtonpost.com
+genius.com
+js.washingtonpost.com
+outbrain.com
