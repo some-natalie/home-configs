@@ -1,13 +1,6 @@
 # -----------------------------------------------------------------------------
 # Pi Hole Adblock lists
-# 24 October 2016
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# To make changes to this file:
-# 1. run `cp /etc/pihole/adlists.default /etc/pihole/adlists.list`
-# 2. run `nano /etc/pihole/adlists.list`
-# 3. Uncomment or comment any of the below lists
+# 9 November 2017
 # -----------------------------------------------------------------------------
 
 # Windows 10 telemetry list
@@ -60,8 +53,11 @@ http://winhelp2002.mvps.org/hosts.txt
 http://securemecca.com/Downloads/hosts.txt
 http://someonewhocares.org/hosts/hosts
 http://sysctl.org/cameleon/hosts
-https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-https://www.hosts-file.net/download/hosts.txt
+https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts
+https://hosts-file.net/download/hosts.txt
+
+# Anti coin mining
+https://raw.githubusercontent.com/greatis/Anti-WebMiner/master/hosts
 
 # Other
 https://adguard.com/en/filter-rules.html?id=11
