@@ -72,7 +72,7 @@ I put this together based on my own machine at home because I knew I'd forget th
 1. Create or edit `/etc/dracut.conf.d/local.conf`
     ```
     add_drivers+="vfio vfio_iommu_type1 vfio_pci vfio_virqfd"
-  install_items+="/sbin/vfio-pci-override-vga.sh /usr/bin/find /usr/bin/dirname"
+    install_items+="/sbin/vfio-pci-override-vga.sh /usr/bin/find /usr/bin/dirname"
     ```
 
 1. Create a file `/sbin/vfio-pci-override-vga.sh` with permissions `755`
