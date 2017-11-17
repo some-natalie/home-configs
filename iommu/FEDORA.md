@@ -5,13 +5,15 @@ I put this together based on my own machine at home because I knew I'd forget th
 
 ### Prerequisites
 - Fedora 26 (fresh install off the live USB image)
-- Computer with two graphics cards (in my case, identical, but they don't need to be)
+- Computer with
+  - Two graphics cards (in my case identical, but they don't need to be)
+  - Motherboard with the Intel 200 series chipset (Union Point)
 - A fresh backup of anything you don't care to lose
 
 
 ### Setup and configuration of the host machine
 1. Add RPM Fusion
-    ```shell
+    ```
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     ```
 
@@ -128,6 +130,3 @@ I put this together based on my own machine at home because I knew I'd forget th
     ```
 
 1. Proceed to set up your virtual machine.
-
-
-:information_source: I needed to use the [ACS patch](https://lkml.org/lkml/2013/5/30/513) in order to detach one, but not both, dedicated graphics cards.  More on that later.
