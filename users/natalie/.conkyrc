@@ -24,11 +24,11 @@
 #
 
 background no
-font Sans:size=9
+font Sans:size=11
 #xftfont Sans:size=10
 use_xft yes
 xftalpha 0.9
-update_interval 3.0
+update_interval 2.0
 update_interval_on_battery 10.0
 total_run_times 0
 own_window yes
@@ -36,9 +36,9 @@ own_window_type normal
 own_window_transparent yes
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
-minimum_size 240 5
-maximum_width 240
-draw_shades yes
+minimum_size 400 5
+maximum_width 400
+draw_shades no
 draw_outline no
 draw_borders no
 draw_graph_borders yes
@@ -46,8 +46,8 @@ default_color eaeaea
 default_shade_color 353535
 #default_outline_color green
 alignment top_right
-gap_x -1580
-gap_y 12
+#gap_x -1580
+#gap_y 12
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -66,21 +66,22 @@ Uptime: $alignr$uptime
 CPU: ${alignr}${freq} MHz
 Processes: ${alignr}$processes ($running_processes running)
 Load: ${alignr}$loadavg
-  CPU 1        ${cpu cpu1} %   ${alignr}CPU 2        ${cpu cpu2} %
-${cpubar 5,100 cpu1}    ${alignr}${cpubar 5,100 cpu2}
-  CPU 3        ${cpu cpu3} %   ${alignr}CPU 4        ${cpu cpu4} %
-${cpubar 5,100 cpu3}    ${alignr}${cpubar 5,100 cpu4}
-  CPU 5        ${cpu cpu5} %   ${alignr}CPU 6        ${cpu cpu6} %
-${cpubar 5,100 cpu5}    ${alignr}${cpubar 5,100 cpu6}
-  CPU 7        ${cpu cpu7} %   ${alignr}CPU 8        ${cpu cpu8} %
-${cpubar 5,100 cpu7}    ${alignr}${cpubar 5,100 cpu8}
 
-Entropy: $alignr$entropy_avail of $entropy_poolsize bytes available
+  CPU 1    ${cpu cpu1} %   ${alignr}CPU 2    ${cpu cpu2} %
+${cpubar 10,170 cpu1}    ${alignr}${cpubar 10,170 cpu2}
+  CPU 3    ${cpu cpu3} %   ${alignr}CPU 4    ${cpu cpu4} %
+${cpubar 10,170 cpu3}    ${alignr}${cpubar 10,170 cpu4}
+  CPU 5    ${cpu cpu5} %   ${alignr}CPU 6    ${cpu cpu6} %
+${cpubar 10,170 cpu5}    ${alignr}${cpubar 10,170 cpu6}
+  CPU 7    ${cpu cpu7} %   ${alignr}CPU 8    ${cpu cpu8} %
+${cpubar 10,170 cpu7}    ${alignr}${cpubar 10,170 cpu8}
 
-RAM ${alignr}$mem used of $memmax ($memperc %)
-${membar 5}
-Swap ${alignr}$swap used of $swapmax ($swapperc %)
-${swapbar 5}
+Entropy: $alignr$entropy_avail of $entropy_poolsize bytes
+
+RAM ${alignr}$mem used of $memmax
+${membar 10}
+Swap ${alignr}$swap used of $swapmax
+${swapbar 10}
 
    TOP CPU $alignr CPU %
 ${top name 1}$alignr${top cpu 1}
@@ -95,38 +96,41 @@ ${top_mem name 3}$alignr${top_mem mem 3}
 ${color eaeaea}FILESYSTEM ${hr 1}${color}
 
 Root: ${alignr}${fs_free /} free of ${fs_size /}
-${fs_bar_free 5 /}
+${fs_bar_free 10 /}
 Home: ${alignr}${fs_free /home} free of ${fs_size /home}
-${fs_bar_free 5 /home}
+${fs_bar_free 10 /home}
 Backups: ${alignr}${fs_free /backups} free of ${fs_size /backups}
-${fs_bar_free 5 /backups}
+${fs_bar_free 10 /backups}
 # Removeable Drives
 ${if_mounted /run/media/natalie/Data}Data: ${alignr}${fs_free /run/media/natalie/Data} free of ${fs_size /run/media/natalie/Data}
-${fs_bar_free 5 /run/media/natalie/Data}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/Data}$else${voffset -13}${endif}
 ${if_mounted /run/media/natalie/Backup}Backup: ${alignr}${fs_free /run/media/natalie/Backup} free of ${fs_size /run/media/natalie/Backup}
-${fs_bar_free 5 /run/media/natalie/Backup}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/Backup}$else${voffset -13}${endif}
 ${if_mounted /run/media/natalie/Video}Video: ${alignr}${fs_free /run/media/natalie/Video} free of ${fs_size /run/media/natalie/Video}
-${fs_bar_free 5 /run/media/natalie/Video}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/Video}$else${voffset -13}${endif}
 ${if_mounted /run/media/natalie/TB-Backup/}1 TB Backup: ${alignr}${fs_free /run/media/natalie/TB-Backup/} free of ${fs_size /run/media/natalie/TB-Backup/}
-${fs_bar_free 5 /run/media/natalie/My\ Book/}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/My\ Book/}$else${voffset -13}${endif}
 ${if_mounted /run/media/natalie/Fedora}Fedora: ${alignr}${fs_free /run/media/natalie/Fedora} free of ${fs_size /run/media/natalie/Fedora}
-${fs_bar_free 5 /run/media/natalie/Fedora}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/Fedora}$else${voffset -13}${endif}
 ${if_mounted /run/media/natalie/Work}Work: ${alignr}${fs_free /run/media/natalie/Work} free of ${fs_size /run/media/natalie/Work}
-${fs_bar_free 5 /run/media/natalie/Work}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/Work}$else${voffset -13}${endif}
 ${if_mounted /run/media/natalie/VIR}iPod: ${alignr}${fs_free /run/media/natalie/VIR} free of ${fs_size /run/media/natalie/VIR}
-${fs_bar_free 5 /run/media/natalie/VIR}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/VIR}$else${voffset -13}${endif}
 ${if_mounted /run/media/natalie/0123-4567}MP3 Player: ${alignr}${fs_free /run/media/natalie/0123-4567} free of ${fs_size /run/media/natalie/0123-4567}
-${fs_bar_free 5 /run/media/natalie/0123-4567}$else${voffset -13}${endif}
+${fs_bar_free 10 /run/media/natalie/0123-4567}$else${voffset -13}${endif}
 
 ${if_up wlp5s0}
-${voffset -30}
+${voffset -180}
 ${color eaeaea}WIRELESS ${hr 1}${color}
 
-Network: ${alignr}${wireless_essid wlp5s0}    (${wireless_bitrate wlp5s0})
-     ${wireless_mode wlp5s0}    ${alignr}${wireless_ap wlp5s0}
+Network: ${alignr}${wireless_essid wlp5s0}
+Speed: ${alignr}${wireless_bitrate wlp5s0}
+Mode: ${alignr}${wireless_mode wlp5s0}
+AP: ${alignr}${wireless_ap wlp5s0}
 IP Address: ${alignr}${addrs wlp5s0}
+
 Down  ${downspeed wlp5s0}/s ${alignr}Up  ${upspeed wlp5s0}/s
-${downspeedgraph wlp5s0 20,107} ${alignr}${upspeedgraph wlp5s0 20,107}
+${downspeedgraph wlp5s0 40,160} ${alignr}${upspeedgraph wlp5s0 40,160}
 Total  ${totaldown wlp5s0} ${alignr}Total  ${totalup wlp5s0}
 ${endif}
 
@@ -136,6 +140,6 @@ ${color eaeaea}ETHERNET ${hr 1}${color}
 
 IP Address: ${alignr}${addrs enp0s31f6}
 Down  ${downspeed enp0s31f6}/s ${alignr}Up  ${upspeed enp0s31f6}/s
-${downspeedgraph enp0s31f6 20,107} ${alignr}${upspeedgraph enp0s31f6 20,107}
+${downspeedgraph enp0s31f6 40,160} ${alignr}${upspeedgraph enp0s31f6 40,160}
 Total  ${totaldown enp0s31f6} ${alignr}Total  ${totalup enp0s31f6}
 ${endif}
