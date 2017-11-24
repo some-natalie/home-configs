@@ -1,8 +1,13 @@
 # .bashrc
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+if [ -e /etc/bashrc ]; then
+  source /etc/bashrc
+fi
+
+# Bash completion
+if [ -e /usr/share/bash-completion/bash_completion ] ; then
+  source /usr/share/bash-completion/bash_completion
 fi
 
 # Terminal setup
@@ -174,15 +179,15 @@ man() {
     LESS_TERMCAP_so="$(printf "\e[1;44;33m")" \
     LESS_TERMCAP_ue="$(printf "\e[0m")" \
     LESS_TERMCAP_us="$(printf "\e[1;32m")" \
-      man "$@"
+    man "$@"
 }
 
 # Syntax highlighting in cat (using Pygments, installed with pip)
 cat() {
-    local out colored
-    out=$(/bin/cat "$@")
-    colored=$(echo $out | pygmentize -f console -g 2>/dev/null)
-    [[ -n $colored ]] && echo "$colored" || echo "$out"
+  local out colored
+  out=$(/bin/cat "$@")
+  colored=$(echo $out | pygmentize -f console -g 2>/dev/null)
+  [[ -n $colored ]] && echo "$colored" || echo "$out"
 }
 
 # Because.
@@ -207,50 +212,50 @@ function psu() {
 
 # Print a remote server's SSL certificate to the terminal
 function sslcert() {
-	if [ "${1}" = "-h" ]; then
+  if [ "${1}" = "-h" ]; then
     echo "Usage: sslcert [FQDN]"
-		echo "Prints SSL certificate of a remote server to the terminal."
+    echo "Prints SSL certificate of a remote server to the terminal."
     return
-	fi
-	echo | openssl s_client -showcerts -servername "$@" -connect "$*":443 2>/dev/null | openssl x509 -inform pem -noout -text
+  fi
+  echo | openssl s_client -showcerts -servername "$@" -connect "$*":443 2>/dev/null | openssl x509 -inform pem -noout -text
 }
 
 # Extract a file
 function extract() {
-	if [ "${1}" = "-h" ]; then
+  if [ "${1}" = "-h" ]; then
     echo "Usage: extract [filename]"
-		echo "Extracts specified archive."
+    echo "Extracts specified archive."
     return
-	fi
-	if [ -f "$1" ] ; then
-		case "$1" in
-			*.tar.bz2) tar xjf "$1" ;;
-			*.tar.gz) tar xzf "$1" ;;
-			*.tar.Z) tar xzf "$1" ;;
-			*.bz2) bunzip2 "$1" ;;
-			*.rar) unrar x "$1" ;;
-			*.gz) gunzip "$1" ;;
-			*.jar) unzip "$1" ;;
-			*.tar) tar xf "$1" ;;
-			*.tbz2) tar xjf "$1" ;;
-			*.tgz) tar xzf "$1" ;;
-			*.zip) unzip "$1" ;;
-			*.Z) uncompress "$1" ;;
-			*) echo "'$1' cannot be extracted." ;;
-		esac
-		else
-			echo "'$1' is not a file."
-	fi
+  fi
+  if [ -f "$1" ] ; then
+    case "$1" in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz) tar xzf "$1" ;;
+      *.tar.Z) tar xzf "$1" ;;
+      *.bz2) bunzip2 "$1" ;;
+      *.rar) unrar x "$1" ;;
+      *.gz) gunzip "$1" ;;
+      *.jar) unzip "$1" ;;
+      *.tar) tar xf "$1" ;;
+      *.tbz2) tar xjf "$1" ;;
+      *.tgz) tar xzf "$1" ;;
+      *.zip) unzip "$1" ;;
+      *.Z) uncompress "$1" ;;
+      *) echo "'$1' cannot be extracted." ;;
+    esac
+    else
+      echo "'$1' is not a file."
+  fi
 }
 
 # RTFM
 function rtfm() {
-	if [ "${1}" = "-h" ]; then
+  if [ "${1}" = "-h" ]; then
     echo "Usage: rtfm [command]"
-		echo "Returns [command] -h, or then the man page, or then Google search results"
+    echo "Returns [command] -h, or then the man page, or then Google search results"
     return
   fi
-	"$@" --help 2> /dev/null || man "$@" 2> /dev/null || open 'http://www.google.com/search?q="$@"';
+  "$@" --help 2> /dev/null || man "$@" 2> /dev/null || open 'http://www.google.com/search?q="$@"';
 }
 
 # What processes are listening on what ports?
@@ -272,7 +277,7 @@ function listening {
   fi
   FILTER="${*}"
   PORTS_PIDS=$(netstat -"${NSOPTS}"lnp | tail -n +3 | tr -s ' ' | sed -n 's/\(tcp\|udp\) [0-9]* [0-9]* \(::\|0\.0\.0\.0\|127\.[0-9]*\.[0-9]*\.[0-9]*\):\([0-9]*\) .* \(-\|\([0-9-]*\)\/.*\)/\3 \1 \5 \2/p' | sed 's/\(::\|0\.0\.0\.0\)/EXTERNAL/' | sed 's/127\.[0-9]*\.[0-9]*\.[0-9]*/LOCALHOST/' | sort -n | tr ' ' ':' | sed 's/::/:-:/' | sed 's/:$//' | uniq)
-	PS=$(ps -eo pid,args)
+  PS=$(ps -eo pid,args)
   echo -e '   Port - Protocol - Interface - Program\n-----------------------------------------------'
   for PORT_PID in ${PORTS_PIDS}; do
     PORT=$(echo "${PORT_PID}" | cut -d':' -f1)
@@ -357,10 +362,10 @@ function myip() {
 # IP info
 function ipif() {
     if grep -P "(([1-9]\d{0,2})\.){3}(?2)" <<< "$1"; then
-	curl ipinfo.io/"$1"
+  curl ipinfo.io/"$1"
     else
-	ipawk=($(host "$1" | awk '/address/ { print $NF }'))
-	curl ipinfo.io/${ipawk[1]}
+  ipawk=($(host "$1" | awk '/address/ { print $NF }'))
+  curl ipinfo.io/${ipawk[1]}
     fi
     echo
 }

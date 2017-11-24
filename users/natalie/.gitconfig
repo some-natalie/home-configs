@@ -1,0 +1,7 @@
+[user]
+	name = Natalie Somersall
+	email = natalie.somersall@gmail.com
+[core]
+	excludesfile = /home/natalie/.gitignore_global
+[push]
+	default = simple
