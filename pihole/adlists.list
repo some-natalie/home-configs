@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 # Pi Hole Adblock lists
-# 9 November 2017
+# 7 December 2017
 # -----------------------------------------------------------------------------
 
 # Windows 10 telemetry list
@@ -20,7 +20,9 @@ https://fanboy.co.nz/enhancedstats.txt
 https://fanboy.co.nz/fanboy-annoyance.txt
 https://fanboy.co.nz/fanboy-antifonts.txt
 https://fanboy.co.nz/fanboy-swedish.txt
+https://www.fanboy.co.nz/fanboy-antifacebook.txt
 https://fanboy.co.nz/r/fanboy-ultimate.txt
+https://easylist-downloads.adblockplus.org/fanboy-social.txt
 
 # Disconnect.me lists
 https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
@@ -28,17 +30,11 @@ https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
 https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt
 https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
 
-# uBlock lists
-https://raw.githubusercontent.com/gorhill/uBlock/master/assets/ublock/badware.txt
-https://raw.githubusercontent.com/gorhill/uBlock/master/assets/ublock/filters.txt
-https://raw.githubusercontent.com/gorhill/uBlock/master/assets/ublock/privacy.txt
-
 # Anti-adblock killer
 https://raw.githubusercontent.com/reek/anti-adblock-killer/master/anti-adblock-killer-filters.txt
+https://easylist-downloads.adblockplus.org/antiadblockfilters.txt
 
 # Anti-malware
-http://malwaredomains.lehigh.edu/files/domains.txt
-http://mirror1.malwaredomains.com/files/domains.txt
 http://mirror1.malwaredomains.com/files/justdomains
 https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt
 
