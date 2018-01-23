@@ -12,7 +12,7 @@
   </cputune>
   <os>
     <type arch='x86_64' machine='pc-i440fx-2.10'>hvm</type>
-    <loader readonly='yes' type='pflash'>/usr/share/ovmf/ovmf_code_x64.bin</loader>
+    <loader readonly='yes' type='pflash'>/usr/share/ovmf/x64/OVMF_CODE.fd</loader>
     <nvram>/var/lib/libvirt/qemu/nvram/games_VARS.fd</nvram>
     <bootmenu enable='no'/>
   </os>
@@ -132,4 +132,3 @@
     <qemu:env name='QEMU_PA_SERVER' value='/run/user/1000/pulse/native'/>
   </qemu:commandline>
 </domain>
-
