@@ -63,7 +63,7 @@ PS1="\[\033[01;35m\]\h\[\033[00m\] \[\033[01;34m\]\$(pwd | sed 's/^.//g' | sed '
 # Exports #
 # # # # # #
 
-export PATH=$PATH:~/.packer
+export PATH=$PATH:~/.packer:/opt/android-sdk/platform-tools
 export EDITOR=/usr/bin/vim
 export WORKON_HOME=$HOME/.virtualenvs
 export PAGER=/usr/bin/less
@@ -154,6 +154,7 @@ alias gitgraph="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cr
 alias git-clone-branches='! git branch -a | sed -n "/\/HEAD /d; /\/master$/d; /remotes/p;" | xargs -L1 git checkout -t'
 alias git-yolo='git commit -am "`curl -s http://whatthecommit.com/index.txt`"'
 alias git-friday-afternoon='git commit -a -m "obviously not a read-only friday"; git push --force'
+alias git-cleanup="git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d && git pull"
 
 
 # # # # # # # # # # # # # # #
