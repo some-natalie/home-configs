@@ -12,8 +12,8 @@
   </cputune>
   <os>
     <type arch='x86_64' machine='pc-i440fx-2.10'>hvm</type>
-    <loader readonly='yes' type='pflash'>/usr/share/ovmf/x64/OVMF_CODE.fd</loader>
-    <nvram>/var/lib/libvirt/qemu/nvram/games_VARS.fd</nvram>
+    <loader readonly='yes' type='pflash'>/usr/share/edk2/ovmf/OVMF_CODE.fd</loader>
+    <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram>
     <bootmenu enable='no'/>
   </os>
   <features>
@@ -48,7 +48,7 @@
     <suspend-to-disk enabled='no'/>
   </pm>
   <devices>
-    <emulator>/usr/sbin/qemu-system-x86_64</emulator>
+    <emulator>/usr/bin/qemu-kvm</emulator>
     <disk type='file' device='cdrom'>
       <driver name='qemu' type='raw'/>
       <target dev='hdb' bus='ide'/>
@@ -127,8 +127,4 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
     </memballoon>
   </devices>
-  <qemu:commandline>
-    <qemu:env name='QEMU_AUDIO_DRV' value='pa'/>
-    <qemu:env name='QEMU_PA_SERVER' value='/run/user/1000/pulse/native'/>
-  </qemu:commandline>
 </domain>
