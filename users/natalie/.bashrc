@@ -110,7 +110,7 @@ alias df='df -h -x tmpfs -x devtmpfs'
 alias dft='df -Tha --total'
 alias diskspace='du -S | sort -n -r | more'
 alias dl='curl -OJL'
-alias du='du -chs'
+alias du='du -chd 1'
 alias free='free -h'
 alias ls='ls -lhaF --color'
 alias mkdir='mkdir -p'
@@ -267,11 +267,11 @@ function listening {
   fi
   DISP="both"
   NSOPTS="tu"
-  if [ "${1}" = "t" -o "${1}" = "tcp" ]; then
+  if [ "${1}" = "t" ] || [ "${1}" = "tcp" ]; then
     DISP="tcp"
     NSOPTS="t"
     shift
-  elif [ "${1}" = "u" -o "${1}" = "udp" ]; then
+  elif [ "${1}" = "u" ] || [ "${1}" = "udp" ]; then
     DISP="udp"
     NSOPTS="u"
     shift
@@ -285,7 +285,7 @@ function listening {
     PROTOCOL=$(echo "${PORT_PID}" | cut -d':' -f2)
     PID=$(echo "${PORT_PID}" | cut -d':' -f3)
     INTERFACE=$(echo "${PORT_PID}" | cut -d':' -f4)
-    if [ "${PROTOCOL}" != "${DISP}" -a "${DISP}" != "both" ]; then
+    if [ "${PROTOCOL}" != "${DISP}" ] && [ "${DISP}" != "both" ]; then
       continue
     fi
     if [ "${PID}" = "-" ]; then
@@ -342,7 +342,7 @@ function openfiles {
   fi
   PIDS=$(pgrep -d "," -f "${@}")
   if [ "${PIDS}" = "" ]; then
-    echo "No processes found matching '${@}'."
+    echo "No processes found matching '${*}'."
     return
   fi
   OPENFILES=$(lsof -PXn -p "${PIDS}" | egrep "${MODE}[A-Za-z]* +REG" | awk '{print $9}' | egrep -v "^\[" | sort | uniq);
@@ -389,7 +389,7 @@ function ii() {
 
 # Update all the things (may need elevated privileges in Linux)
 function updates() {
-  if [ $OSTYPE = "darwin16" ] ; then
+  if [ $OSTYPE = "darwin17" ] ; then
     softwareupdate -li
     if [ -f /usr/local/bin/brew ] ; then
       brew update && brew upgrade -y

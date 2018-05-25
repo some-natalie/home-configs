@@ -24,6 +24,8 @@ I put this together based on my own machine at home because I knew I'd forget th
     sudo reboot
     ```
 
+1. If you have identical graphics cards, compile your own kernel from the SRPM, adding the ACS override patch (and whatever else you want).
+
 1. Install virtualization software and add yourself to the user group
     ```shell
     sudo dnf install @virtualization
@@ -50,7 +52,7 @@ I put this together based on my own machine at home because I knew I'd forget th
     lsmod | grep nvidia    # This should display at least a couple things
     ```
 
-1. Edit `/etc/default/grub` to enable IOMMU, blacklist nouveau, and turn on vfio-pci
+1. Edit `/etc/default/grub` to enable IOMMU, blacklist nouveau, and load vfio-pci first
     ```
     GRUB_CMDLINE_LINUX="rd.driver.pre=vfio-pci rd.driver.blacklist=nouveau modprobe.blacklist=nouveau rd.lvm.lv=fedora/root rd.lvm.lv=fedora/swap rhgb quiet intel_iommu=on iommu=pt"
     ```
@@ -68,31 +70,16 @@ I put this together based on my own machine at home because I knew I'd forget th
 
 1. Create or edit `/etc/modprobe.d/local.conf`
     ```
-    install vfio-pci /sbin/vfio-pci-override-vga.sh
+    install vfio-pci /sbin/vfio-pci-override.sh
     ```
 
 1. Create or edit `/etc/dracut.conf.d/local.conf`
     ```
     add_drivers+="vfio vfio_iommu_type1 vfio_pci vfio_virqfd"
-    install_items+="/sbin/vfio-pci-override-vga.sh /usr/bin/find /usr/bin/dirname"
+    install_items+="/sbin/vfio-pci-override.sh /usr/bin/find /usr/bin/dirname"
     ```
 
-1. Create a file `/sbin/vfio-pci-override-vga.sh` with permissions `755`
-    ```shell
-    #!/bin/sh
-    for i in $(find /sys/devices/pci* -name boot_vga); do
-      if [ $(cat $i) -eq 0 ]; then
-        GPU=$(dirname $i)
-        AUDIO=$(echo $GPU | sed -e "s/0$/1/")
-        echo "vfio-pci" > $GPU/driver_override
-        if [ -d $AUDIO ]; then
-          echo "vfio-pci" > $AUDIO/driver_override
-        fi
-      fi
-    done
-
-    modprobe -i vfio-pci
-    ```
+1. Create a file `/sbin/vfio-pci-override.sh` with permissions `755` (file in this directory of the repo).
 
 1. Rebuild using `dracut`
     ```shell
